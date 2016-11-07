@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+
+  <target name="svg2png">
+    <condition property="ImageMagickExecutable"
+      value="${dita.plugin.com.tagsmiths.svg2png.dir}${file.separator}tools${file.separator}ImageMagick-6.8.9${file.separator}convert">
+      <and>
+        <not><isset property="ImageMagickExecutable"/></not>
+        <os family="unix"/>
+        <available
+          file="${dita.plugin.com.tagsmiths.svg2png.dir}${file.separator}tools${file.separator}ImageMagick-6.8.9${file.separator}convert"
+        /></and>
+    </condition>
+    <condition property="ImageMagickExecutable"
+      value="${dita.plugin.com.tagsmiths.svg2png.dir}${file.separator}tools${file.separator}ImageMagick-7.0.3-4-portable-Q16-x64${file.separator}convert.exe">
+      <and>
+        <not><isset property="ImageMagickExecutable"/></not>
+        <available
+        file="${dita.plugin.com.tagsmiths.svg2png.dir}${file.separator}tools${file.separator}ImageMagick-7.0.3-4-portable-Q16-x64${file.separator}convert.exe"
+      /></and>
+    </condition>
+    <echo message="ImageMagickExecutable=${ImageMagickExecutable}"></echo>
+    <apply executable="${ImageMagickExecutable}">
+      <srcfile/>
+      <targetfile/>
+      <fileset dir="${dita.temp.dir}/docx/word/media">
+        <include name="**.svg"/>
+      </fileset>
+      <globmapper from="*.svg" to="${dita.temp.dir}/docx/word/media/*.png" casesensitive="off"/>
+    </apply>
+    <delete dir="${dita.temp.dir}/docx/word/media">
+      <include name="**.svg"/>
+    </delete>
+  </target>
+
+</project>
