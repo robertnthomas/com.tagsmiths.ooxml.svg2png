@@ -2,6 +2,7 @@
 <project>
 
   <target name="svg2png">
+    <!-- Tested on Ubuntu Linux 16.04 -->
     <condition property="ImageMagickExecutable"
       value="${dita.plugin.com.tagsmiths.svg2png.dir}${file.separator}tools${file.separator}ImageMagick-6.8.9${file.separator}convert">
       <and>
@@ -11,6 +12,7 @@
           file="${dita.plugin.com.tagsmiths.svg2png.dir}${file.separator}tools${file.separator}ImageMagick-6.8.9${file.separator}convert"
         /></and>
     </condition>
+    <!-- Tested on Windows 10 -->
     <condition property="ImageMagickExecutable"
       value="${dita.plugin.com.tagsmiths.svg2png.dir}${file.separator}tools${file.separator}ImageMagick-7.0.3-4-portable-Q16-x64${file.separator}convert.exe">
       <and>
@@ -19,7 +21,8 @@
         file="${dita.plugin.com.tagsmiths.svg2png.dir}${file.separator}tools${file.separator}ImageMagick-7.0.3-4-portable-Q16-x64${file.separator}convert.exe"
       /></and>
     </condition>
-    <echo message="ImageMagickExecutable=${ImageMagickExecutable}"></echo>
+    <!--<echo message="file=${dita.plugin.com.tagsmiths.svg2png.dir}${file.separator}tools${file.separator}ImageMagick-7.0.3-4-portable-Q16-x64${file.separator}convert.exe"/>
+    <echo message="ImageMagickExecutable=${ImageMagickExecutable}"></echo>-->
     <apply executable="${ImageMagickExecutable}">
       <srcfile/>
       <targetfile/>
